@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# archivos capturados a modo de referencia, no utilizados por el sitio
+public/4 Captura de pantalla 2026-11-13 222635.png
+public/5 Captura de pantalla 2026-11-13 222715.png
+
+# archivo de entorno de desarrollo local (no forma parte del sitio)
+AGENTS.md
