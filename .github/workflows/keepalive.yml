@@ -1,0 +1,21 @@
+name: Keepalive
+on:
+  schedule:
+    # Lunes y jueves 03:00 UTC (~cada 4 días)
+    - cron: "0 3 * * 1/4"
+  workflow_dispatch:
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping a /api/keepalive
+        run: |
+          STATUS=$(curl -s -o /tmp/response.json -w "%{http_code}" \
+            -H "x-keepalive-secret: ${{ secrets.KEEPALIVE_SECRET }}" \
+            "${{ secrets.SITE_URL }}/api/keepalive")
+          cat /tmp/response.json
+          if [ "$STATUS" != "200" ]; then
+            echo "::error::keepalive falló con HTTP $STATUS"
+            exit 1
+          fi
