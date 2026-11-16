@@ -95,6 +95,23 @@ Los cambios hechos desde el panel se ven al instante en la web.
 
 ## Mantenimiento y copias de seguridad
 
+### Keepalive de Supabase (evitar pausa del plan Free)
+
+Supabase Free **pausa el proyecto tras 7 días sin actividad**. Para evitarlo sin
+servicios pagos:
+
+- `workers/keepalive-worker.js` — Worker standalone para Cloudflare Workers.
+  Hace un GET a `/api/keepalive` cada 2 días con un secreto compartido.
+  Configuración (todo desde el dashboard de Cloudflare, sin código local):
+  1. Workers & Pages → Create Worker → pegar el archivo → Deploy
+  2. Settings > Variables:
+     - `SITE_URL` = `https://tu-dominio.com` (sin barra final)
+     - `KEEPALIVE_SECRET` = secreto largo aleatorio (marcar como Secret)
+  3. Triggers > Cron Triggers > Add Cron: `0 8 */2 * *`
+- En el hosting del sitio (Vercel u otro), la misma variable `KEEPALIVE_SECRET`.
+- `/api/keepalive` ejecuta una query real en Supabase y cuenta como actividad.
+  Fuera de horario, cada 2 días es de sobra. El endpoint vive dentro del sitio.
+
 ### Backup de base de datos (contenido editado)
 
 ```bash
