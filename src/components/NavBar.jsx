@@ -122,11 +122,11 @@ export default function NavBar({ contacto }) {
           : "border-slate-200 bg-white"
       }`}
     >
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-1 py-1.5 pl-4 pr-4 sm:pl-6 sm:pr-6 lg:px-8 xl:gap-4">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-1 py-1.5 pl-4 pr-4 sm:pl-6 sm:pr-6 lg:px-8 xl:max-w-none xl:grid xl:grid-cols-[1fr_auto_1fr] xl:items-center xl:gap-6 xl:pl-10 xl:pr-10 2xl:px-16">
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-3"
+          className="flex items-center gap-3 justify-self-start"
           aria-label="Consultorio Odontológico Javier Vera — Inicio"
           onClick={irAlInicio}
         >
@@ -149,7 +149,7 @@ export default function NavBar({ contacto }) {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-1 xl:flex">
+        <nav className="hidden items-center gap-1 justify-self-center xl:flex">
           {navItems.map((item) => {
             const active = isActive(item.href);
             return (
@@ -169,8 +169,8 @@ export default function NavBar({ contacto }) {
           })}
         </nav>
 
-        {/* CTA urgencias: visible siempre, al lado del menú mobile */}
-        <div className="ml-auto shrink-0">
+        {/* CTA urgencias + avatar de administrador (solo desktop) */}
+        <div className="ml-auto flex shrink-0 items-center gap-2 xl:ml-0 xl:justify-self-end">
           <a
             href={waUrgencias}
             target="_blank"
@@ -192,57 +192,57 @@ export default function NavBar({ contacto }) {
             </svg>
             Urgencias 24 Hs.
           </a>
-        </div>
 
-        {/* Avatar de administrador: solo dentro del panel, solo desktop */}
-        {esAdmin && (
-          <div className="relative hidden shrink-0 xl:block">
-            <button
-              type="button"
-              onClick={() => setAdminMenu((v) => !v)}
-              aria-label="Menú de administrador"
-              aria-haspopup="true"
-              aria-expanded={adminMenu}
-              className="block h-11 w-11 overflow-hidden rounded-full border-2 border-sky-500 shadow-sm transition hover:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-500/50"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/Javier_Vera.jpg" alt="Javier Vera" className="h-full w-full object-cover object-[center_18%]" />
-            </button>
-            {adminMenu && (
-              <>
-                <button
-                  type="button"
-                  aria-label="Cerrar menú"
-                  tabIndex={-1}
-                  className="fixed inset-0 z-10 cursor-default"
-                  onClick={() => setAdminMenu(false)}
-                />
-                <div role="menu" className="absolute right-0 z-20 mt-2 w-52 overflow-hidden rounded-xl border border-slate-200 bg-white py-1 shadow-xl">
-                  <p className="border-b border-slate-100 px-4 py-2.5 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
-                    Administrador
-                  </p>
-                  <Link
-                    href="/admin"
-                    role="menuitem"
+          {/* Avatar de administrador: solo dentro del panel, solo desktop */}
+          {esAdmin && (
+            <div className="relative hidden shrink-0 xl:block">
+              <button
+                type="button"
+                onClick={() => setAdminMenu((v) => !v)}
+                aria-label="Menú de administrador"
+                aria-haspopup="true"
+                aria-expanded={adminMenu}
+                className="block h-11 w-11 overflow-hidden rounded-full border-2 border-sky-500 shadow-sm transition hover:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-500/50"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/Javier_Vera.jpg" alt="Javier Vera" className="h-full w-full object-cover object-[center_18%]" />
+              </button>
+              {adminMenu && (
+                <>
+                  <button
+                    type="button"
+                    aria-label="Cerrar menú"
+                    tabIndex={-1}
+                    className="fixed inset-0 z-10 cursor-default"
                     onClick={() => setAdminMenu(false)}
-                    className="block px-4 py-2.5 text-[13px] font-medium text-slate-700 transition-colors hover:bg-slate-50"
-                  >
-                    Ir al panel
-                  </Link>
-                  <form action={logoutAction}>
-                    <button
-                      type="submit"
+                  />
+                  <div role="menu" className="absolute right-0 z-20 mt-2 w-52 overflow-hidden rounded-xl border border-slate-200 bg-white py-1 shadow-xl">
+                    <p className="border-b border-slate-100 px-4 py-2.5 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+                      Administrador
+                    </p>
+                    <Link
+                      href="/admin"
                       role="menuitem"
-                      className="block w-full px-4 py-2.5 text-left text-[13px] font-semibold text-red-600 transition-colors hover:bg-red-50"
+                      onClick={() => setAdminMenu(false)}
+                      className="block px-4 py-2.5 text-[13px] font-medium text-slate-700 transition-colors hover:bg-slate-50"
                     >
-                      Cerrar sesión
-                    </button>
-                  </form>
-                </div>
-              </>
-            )}
-          </div>
-        )}
+                      Ir al panel
+                    </Link>
+                    <form action={logoutAction}>
+                      <button
+                        type="submit"
+                        role="menuitem"
+                        className="block w-full px-4 py-2.5 text-left text-[13px] font-semibold text-red-600 transition-colors hover:bg-red-50"
+                      >
+                        Cerrar sesión
+                      </button>
+                    </form>
+                  </div>
+                </>
+              )}
+            </div>
+          )}
+        </div>
 
         {/* Mobile toggle */}
         <button
