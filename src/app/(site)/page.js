@@ -376,7 +376,7 @@ export default async function Home() {
               href={waTurnos}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-8 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-[#1ebe5b] sm:w-auto sm:text-base"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#1ebe5b] sm:px-8 sm:py-3.5 sm:text-base"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
