@@ -69,7 +69,7 @@ export default function Panel({ contenido, email }) {
   const seccion = SECCIONES.find((s) => s.id === tab);
 
   return (
-    <main className="flex flex-1 flex-col items-stretch px-3 py-5 sm:px-5 sm:py-6">
+    <main className="relative flex flex-1 flex-col items-stretch px-3 py-5 sm:px-5 sm:py-6">
       <div className="mx-auto grid w-full min-w-0 max-w-6xl grid-cols-[minmax(0,1fr)] gap-4 md:grid-cols-[240px_minmax(0,1fr)]">
         {/* MOBILE: tabs arriba */}
         <div className="rounded-2xl border border-white/10 bg-sky-950 p-4 md:hidden">
@@ -175,7 +175,7 @@ export default function Panel({ contenido, email }) {
         <div
           role="status"
           aria-live="polite"
-          className="fixed top-6 right-4 z-50 flex items-center gap-2 rounded-xl border border-emerald-400/40 bg-emerald-500/15 px-4 py-2.5 text-[13px] font-semibold text-emerald-300 shadow-lg backdrop-blur-sm"
+          className="fixed top-6 right-4 z-50 flex items-center gap-2 rounded-xl border border-emerald-400/40 bg-emerald-500/15 px-4 py-2.5 text-[13px] font-semibold text-emerald-300 shadow-lg backdrop-blur-sm xl:absolute xl:right-6 xl:top-6"
         >
           <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="m5 12 5 5L20 7" />
